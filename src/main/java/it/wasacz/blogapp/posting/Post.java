@@ -10,7 +10,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long authorId;
     private String title;
     private String content;
     private LocalDate creationDate;
@@ -19,15 +18,14 @@ public class Post {
 
     protected Post() {}
 
-    private Post(Long authorId, String title, String content) {
-        this.authorId = authorId;
+    private Post(String title, String content) {
         this.title = title;
         this.content = content;
         this.creationDate = LocalDate.now();
     }
 
-    static public Post create(Long authorId, String title, String content) {
-        return new Post(authorId, title, content);
+    static public Post create(String title, String content) {
+        return new Post(title, content);
     }
 
     private void setId(Long id) {
